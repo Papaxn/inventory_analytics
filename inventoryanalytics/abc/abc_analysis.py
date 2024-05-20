@@ -23,7 +23,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 class ABC:
 
-    def __init__(self, file='./inventoryanalytics/abc/data/Flores1992.csv'):
+    def __init__(self, file=r"C:\Users\Thabang.Keele\Documents\github\inventory_analytics\inventoryanalytics\abc\data\Flores1992.csv"):
         self.data = ABC._readData(file)
 
     @staticmethod
@@ -96,7 +96,7 @@ class ABC:
         '''
 
         item_no = np.matrix(data)[1:,0]                #item ids
-        m = np.matrix(data)[1:,[1,2]].astype(np.float) #criteria scores
+        m = np.matrix(data)[1:,[1,2]].astype(float) #criteria scores
 
         unsorted_adu = ABC.annual_dollar_usage(item_no, m)
         print(np.matrix(unsorted_adu))
@@ -149,7 +149,7 @@ class ABC:
         data = d.data
 
         item_no = np.matrix(data)[1:,0]                     #item ids
-        m = np.matrix(data)[1:,[1,2,6,7]].astype(np.float)  #criteria scores
+        m = np.matrix(data)[1:,[1,2,6,7]].astype(float)  #criteria scores
 
         #pairwise preferences for average unit cost, annual dollar usage, criticality, lead time
         prefs = [
@@ -177,7 +177,7 @@ class ABC:
         data = d.data
 
         item_no = np.matrix(data)[1:,0]                       #item ids
-        m = np.matrix(data)[1:,[1,2,6,7]].astype(np.float)    #criteria scores
+        m = np.matrix(data)[1:,[1,2,6,7]].astype(float)    #criteria scores
 
         # compute DEA
         fmin, fmax = m.min(0), m.max(0)
@@ -247,7 +247,7 @@ class ABC:
         data = d.data
 
         item_no = np.matrix(data)[1:,0]                     #item ids
-        m = np.matrix(data)[1:,[2,3,6,7]].astype(np.float)  #criteria scores
+        m = np.matrix(data)[1:,[2,3,6,7]].astype(float)  #criteria scores
 
         cov_mat = np.cov(m, rowvar=False)
         np.set_printoptions(precision=5, suppress=True)
@@ -285,7 +285,7 @@ class ABC:
         d = ABC()
         # print(np.matrix(d.data))
         # plot points and annotations
-        m = np.matrix(d.data)[1:,[x,y]].astype(np.float)
+        m = np.matrix(d.data)[1:,[x,y]].astype(float)
         my_colors = {'A':'red','B':'yellow','C':'green'}
         for k in range(0,m.shape[0]-1):
             plt.scatter(m[:,0].flatten().tolist()[0][k],
